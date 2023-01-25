@@ -1,5 +1,15 @@
+class Product {
+    title = 'DEFAULT';
+    imageUrl;
+    description;
+    price;
+}
+
+console.log(new Product());
+
 const productList = {
     products : [
+        // new Product()
         { 
             title: 'A pillow',
             imageUrl: 'https://images-us-prod.cms.dynamics365commerce.ms/cms/api/cncgmclkfv/imageFileData/search?fileName=/Products%2F142907P%20%5E%20%20%5E%20King%20%5E%20%20%5E%20Prime_000_001.png&fallback=/Products/142907P_000_001.png,Product-Fallback-Image.png&m=6&q=80&cropfocalregion=true',
