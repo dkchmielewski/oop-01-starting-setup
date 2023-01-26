@@ -15,11 +15,25 @@ class Product {
 class ShoppingCart {
   items = [];
 
-  addProduct(product) {
-    this.items.push(product);
-    this.totalOutput.innerHTML = `<h2>Total: \$${1}</h2>`;
+  set cartItems(value) {
+    this.items = value;
+    this.totalOutput.innerHTML = `<h2>Total: \$${this.totalAmount.toFixed(2)}</h2>`;
   }
-  
+
+  get totalAmount() {
+    const sum = this.items.reduce(
+      (prevValue, curItem) => prevValue + curItem.price,
+      0
+    );
+    return sum;
+  }
+
+  addProduct(product) {
+    const updatedItems = [...this.items];
+    updatedItems.push(product);
+    this.cartItems = updatedItems;
+  }
+
   render() {
     const cartEl = document.createElement('section');
     cartEl.innerHTML = `
@@ -66,14 +80,14 @@ class ProductList {
     new Product(
       'A pillow',
       'https://images-us-prod.cms.dynamics365commerce.ms/cms/api/cncgmclkfv/imageFileData/search?fileName=/Products%2F142907P%20%5E%20%20%5E%20King%20%5E%20%20%5E%20Prime_000_001.png&fallback=/Products/142907P_000_001.png,Product-Fallback-Image.png&m=6&q=80&cropfocalregion=true',
-      19.99,
-      'A soft pillow!'
+      'A soft pillow!',
+      19.99
     ),
     new Product(
       'A carpet',
       'https://www.claremontrug.com/antique-oriental-rugs-carpets/images_rugs/5532/Antique-Persian-Rug-Serapi-11-1x12-5.SGC4.jpg',
-      89.99,
-      'A carpet which you might like - or not.'
+      'A carpet which you might like - or not.',
+      89.99
     ),
   ];
 
